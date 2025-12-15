@@ -1,3 +1,5 @@
+Markdown
+
 # 🕸️ GraphRAG-Groq-Neo4j: Hybrid Retrieval System
 
 ![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
@@ -43,24 +45,26 @@ This project implements a "Graph + Vector" hybrid approach:
 ```bash
 git clone [https://github.com/YOUR_USERNAME/GraphRAG-Groq-Neo4j.git](https://github.com/YOUR_USERNAME/GraphRAG-Groq-Neo4j.git)
 cd GraphRAG-Groq-Neo4j
-
-### 2. Install Dependencies
+2. Install Dependencies
 Bash
-pip install -r requirements.txt
 
-### 3. Environment Configuration
+pip install -r requirements.txt
+3. Environment Configuration
 Create a .env file in the root directory and add your credentials:
+
 Ini, TOML
+
 GROQ_API_KEY=your_groq_api_key_here
 NEO4J_URI=neo4j+s://your-instance.databases.neo4j.io
 NEO4J_USERNAME=neo4j
 NEO4J_PASSWORD=your_neo4j_password
-
 4. Run the Application
 Bash
-streamlit run app.py
 
-## 📂 Project Structure
+streamlit run app.py
+📂 Project Structure
+Plaintext
+
 graphrag-app/
 ├── app.py               # Main Streamlit Frontend Application
 ├── backend/
@@ -70,15 +74,23 @@ graphrag-app/
 ├── requirements.txt     # Python Dependencies
 ├── .env                 # API Keys (Not tracked in Git)
 └── README.md            # Documentation
+🧪 How It Works
+Upload: User uploads a document. The text is chunked.
 
-## 🧪 How It Works
-**Upload**: User uploads a document. The text is chunked.
-**Extraction**: The LLM identifies nodes (Entities) and edges (Relationships) from the chunks.
-**Indexing**:
+Extraction: The LLM identifies nodes (Entities) and edges (Relationships) from the chunks.
+
+Indexing:
+
 Text chunks are embedded and saved to ChromaDB.
+
 Entities and relationships are pushed to Neo4j via Cypher queries.
-**Querying**:
+
+Querying:
+
 The user asks a question.
+
 The system performs a Vector Search to get relevant context.
+
 Simultaneously, it queries the Graph to find related entities (neighborhood retrieval).
+
 Contexts are combined and passed to Llama 3.1 to generate a precise answer.
